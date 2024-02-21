@@ -2,7 +2,6 @@ const http = require('http');
 const url = require('url');
 const querystring = require('querystring');
 const htmlResponses = require('./htmlResponses.js');
-const distractionHandler = require('./distractions.js');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
@@ -11,9 +10,7 @@ const urlStruct = {
     '/': htmlResponses.getIndex,
   },
   HEAD: {},
-  POST: {
-    '/newDistraction': distractionHandler.registerNewDistraction
-  },
+  POST: {},
   notFound: htmlResponses.notFound
 };
 
