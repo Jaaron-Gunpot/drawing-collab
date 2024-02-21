@@ -12,6 +12,7 @@ const urlStruct = {
   HEAD: {},
   POST: {},
   DELETE: {},
+  notFound: htmlResponses.notFound
 };
 
 const onRequest = (request, response) => {
