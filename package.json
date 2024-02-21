@@ -18,6 +18,8 @@
     "nodemon": "^3.0.3"
   },
   "dependencies": {
-    "discord.js": "^14.14.1"
+    "discord.js": "^14.14.1",
+    "ml5": "^0.12.2",
+    "p5": "^1.9.0"
   }
 }
