@@ -1,7 +1,9 @@
 const http = require('http');
+const server = http.createServer();
 const url = require('url');
 const querystring = require('querystring');
 const htmlResponses = require('./htmlResponses.js');
+const socket = require('socket.io')(server);
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
@@ -73,6 +75,6 @@ const onRequest = (request, response) => {
   }
 };
 
-http.createServer(onRequest).listen(port, () => {
+server.listen(port, () => {
   console.log(`Listening on 127.0.0.1: ${port}`);
 });
