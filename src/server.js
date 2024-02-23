@@ -1,9 +1,10 @@
 const http = require('http');
-const server = http.createServer();
+
+const server = http.createServer(onRequest);
 const url = require('url');
-const querystring = require('querystring');
-const htmlResponses = require('./htmlResponses.js');
+const query = require('querystring');
 const socket = require('socket.io')(server);
+const htmlResponses = require('./htmlResponses.js');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
@@ -13,11 +14,11 @@ const urlStruct = {
   },
   HEAD: {},
   POST: {},
-  notFound: htmlResponses.notFound
+  notFound: htmlResponses.notFound,
 };
 
-const parseBody = (request, response, handler)=>{
-      // The request will come in in pieces. We will store those pieces in this
+const parseBody = (request, response, handler) => {
+  // The request will come in in pieces. We will store those pieces in this
   // body array.
   const body = [];
 
@@ -52,27 +53,26 @@ const parseBody = (request, response, handler)=>{
     // proceed much like we would with a GET request.
     handler(request, response, bodyParams);
   });
-} 
+};
 
 const onRequest = (request, response) => {
   const parsedUrl = url.parse(request.url);
-  const params = querystring.parse(parsedUrl.query);
+  const params = query.parse(parsedUrl.query);
 
-  //handle post re4quests generally
-  if(request.method ==='POST'){
+  // handle post re4quests generally
+  if (request.method === 'POST') {
     // if the url is not under post, return a 404
     if (!urlStruct[request.method][parsedUrl.pathname]) {
-        return urlStruct.notFound(request, response);
-      }
-      // I don't know why this return is needed and i am scared to remove it
-      return parseBody(request, response, urlStruct[request.method][parsedUrl.pathname]);
+      return urlStruct.notFound(request, response);
+    }
+    // I don't know why this return is needed and i am scared to remove it
+    return parseBody(request, response, urlStruct[request.method][parsedUrl.pathname]);
   }
 
   if (urlStruct[request.method][parsedUrl.pathname]) {
-    urlStruct[request.method][parsedUrl.pathname](request, response, params);
-  } else {
-    urlStruct.notFound(request, response);
+    return urlStruct[request.method][parsedUrl.pathname](request, response, params);
   }
+  return urlStruct.notFound(request, response);
 };
 
 server.listen(port, () => {
