@@ -1,9 +1,7 @@
 const http = require('http');
-
-const server = http.createServer(onRequest);
 const url = require('url');
 const query = require('querystring');
-const socket = require('socket.io')(server);
+const socketio = require('socket.io');
 const htmlResponses = require('./htmlResponses.js');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
@@ -11,6 +9,7 @@ const port = process.env.PORT || process.env.NODE_PORT || 3000;
 const urlStruct = {
   GET: {
     '/': htmlResponses.getIndex,
+    '/canvas.js': htmlResponses.getSrc,
   },
   HEAD: {},
   POST: {},
@@ -57,6 +56,7 @@ const parseBody = (request, response, handler) => {
 
 const onRequest = (request, response) => {
   const parsedUrl = url.parse(request.url);
+  console.log(request.url);
   const params = query.parse(parsedUrl.query);
 
   // handle post re4quests generally
@@ -74,7 +74,8 @@ const onRequest = (request, response) => {
   }
   return urlStruct.notFound(request, response);
 };
-
+const server = http.createServer(onRequest);
+const io = socketio(server);
 server.listen(port, () => {
   console.log(`Listening on 127.0.0.1: ${port}`);
 });

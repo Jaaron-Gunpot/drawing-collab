@@ -2,6 +2,8 @@ const fs = require('fs');
 
 const index = fs.readFileSync(`${__dirname}/../client/client.html`);
 const error = fs.readFileSync(`${__dirname}/../client/404.html`);
+//will use webpack if it turns into multiple files
+const src = fs.readFileSync(`${__dirname}/../client/canvas.js`);
 
 const getIndex = (request, response) => {
   response.writeHead(200, { 'Content-Type': 'text/html' });
@@ -15,5 +17,13 @@ const notFound = (request, response) => {
   response.end();
 };
 
+const getSrc = (request, response) => {
+    response.writeHead(200, { 'Content-Type': 'application/javascript' });
+    response.write(src);
+    response.end();
+};
+
 module.exports.getIndex = getIndex;
 module.exports.notFound = notFound;
+module.exports.getSrc = getSrc;
+
