@@ -79,3 +79,5 @@ const io = socketio(server);
 server.listen(port, () => {
   console.log(`Listening on 127.0.0.1: ${port}`);
 });
+
+module.exports.io = io;

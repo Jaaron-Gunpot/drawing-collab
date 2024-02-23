@@ -1,9 +1,9 @@
 const fs = require('fs');
 
-const index = fs.readFileSync(`${__dirname}/../client/client.html`);
-const error = fs.readFileSync(`${__dirname}/../client/404.html`);
+const index = fs.readFileSync(`${__dirname}/../client/html/client.html`);
+const error = fs.readFileSync(`${__dirname}/../client/html/404.html`);
 //will use webpack if it turns into multiple files
-const src = fs.readFileSync(`${__dirname}/../client/canvas.js`);
+const src = fs.readFileSync(`${__dirname}/../client/js/canvas.js`);
 
 const getIndex = (request, response) => {
   response.writeHead(200, { 'Content-Type': 'text/html' });
