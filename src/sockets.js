@@ -1,5 +1,5 @@
-const io = require('./server.js').io;
+const { io } = require('./server.js');
 
-io.on('connection', (socket)=>{
-    console.log(`connected socket:${socket}`);
+io.on('connection', (socket) => {
+  console.log(`connected socket:${socket}`);
 });

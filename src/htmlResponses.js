@@ -2,7 +2,7 @@ const fs = require('fs');
 
 const index = fs.readFileSync(`${__dirname}/../client/html/client.html`);
 const error = fs.readFileSync(`${__dirname}/../client/html/404.html`);
-//will use webpack if it turns into multiple files
+// will use webpack if it turns into multiple files
 const src = fs.readFileSync(`${__dirname}/../client/js/canvas.js`);
 
 const getIndex = (request, response) => {
@@ -18,12 +18,11 @@ const notFound = (request, response) => {
 };
 
 const getSrc = (request, response) => {
-    response.writeHead(200, { 'Content-Type': 'application/javascript' });
-    response.write(src);
-    response.end();
+  response.writeHead(200, { 'Content-Type': 'application/javascript' });
+  response.write(src);
+  response.end();
 };
 
 module.exports.getIndex = getIndex;
 module.exports.notFound = notFound;
 module.exports.getSrc = getSrc;
-
