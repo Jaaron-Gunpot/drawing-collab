@@ -1,9 +1,9 @@
 const http = require('http');
 const url = require('url');
 const query = require('querystring');
-const socketio = require('socket.io');
 const htmlResponses = require('./htmlResponses.js');
 const canvasResponses = require('./canvas.js');
+const createSocket = require('./sockets.js').setupSockets;
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
@@ -79,9 +79,7 @@ const onRequest = (request, response) => {
   return urlStruct.notFound(request, response);
 };
 const server = http.createServer(onRequest);
-const io = socketio(server);
+createSocket(server);
 server.listen(port, () => {
   console.log(`Listening on 127.0.0.1: ${port}`);
 });
-
-module.exports.io = io;

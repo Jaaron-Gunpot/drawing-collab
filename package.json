@@ -4,10 +4,10 @@
   "description": "API",
   "main": "./src/server.js",
   "scripts": {
-    "start": "node ./src/sockets.js",
+    "start": "node ./src/server.js",
     "pretest": "eslint ./src --fix",
     "test": "echo \"Good job! All tests clear\"",
-    "nodemon": "nodemon -e js,html,css --watch ./src --watch ./client ./src/sockets.js",
+    "nodemon": "nodemon -e js,html,css --watch ./src --watch ./client ./src/server.js",
     "buildBundle": "webpack",
     "watchBundle": "webpack watch",
     "heroku-postbuild": "webpack --mode production"
