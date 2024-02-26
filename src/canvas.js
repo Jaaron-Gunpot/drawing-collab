@@ -10,7 +10,7 @@ const updateCanvas = (request, response, body) => {
   socket(currentCanvas);
   response.write(JSON.stringify({ message: 'updated canvas' }));
   response.end();
-  //console.log(body);
+  // console.log(body);
 };
 
 const provideCanvas = (request, response) => {
