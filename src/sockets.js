@@ -1,29 +1,29 @@
 const socketio = require('socket.io');
 
-// dummy function to be assigned in socket so it can be exported
-let canvasChanged;
-
 // put the io boject in the global scope
 let io;
 
 // setup the io object using a passed in server from server.js
 const setupSockets = (server) => {
   io = socketio(server);
-  // I want to export socket so i can emit events from other files but this is the entry file - rectified
+  // why is there a line character limit?
+  // I want to export socket so i can emit events from other files but this is the entry file-fixed
   io.on('connection', (socket) => {
     console.log(`connected socket:${socket.id}`);
-    socket.on('canvas-changed', (e) => {
-      //console.log(e);
+    // should the server do something if the canvas hanges soket related?
+    // the client already sends a post request when that happens so probably not
+    socket.on('canvas-changed', () => {
+      // console.log(e);
     });
-    // tells connected sockets that the canvas has changed so they can update accordingly
-    // at this point I realized sockets are just an implementation of the observer pattern
-    canvasChanged = (e) => {
-      socket.emit('new-canvas', e);
-    };
   });
   return io;
 };
 
+// tells connected sockets that the canvas has changed so they can update accordingly
+// at this point I realized sockets are just an implementation of the observer pattern
+const canvasChanged = (e) => {
+  io.emit('new-canvas', e);
+};
 
 module.exports = {
   setupSockets,
