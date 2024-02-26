@@ -104,4 +104,8 @@ Instead, your query parameters should be used for things like filtering the resu
 of a query, etc.
 ● The client must send the accept header. Note that your server only needs to
 support JSON, although you may add support for things like XML.
+Add the ability to choose color and size of the brush.
+Add the ability to erase.
+implement css and bulma(maybe)
+use local storage to save the client color and brush size
 */
