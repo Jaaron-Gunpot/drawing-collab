@@ -1,8 +1,27 @@
 //objects that holds the canvas object to be detected when it changes
+let serverCanvas;
 let oldCanvas;
 let newCanvas;
 let canvasWidth = 500;
 let canvasHeight = 500;
+
+function preload(){
+    fetch('/newCanvas', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(
+        (response) => {return response.json();}
+    ).then(
+        (data) => {
+            loadImage(data.imageData, img => {
+                serverCanvas = img;
+            });
+        }
+    );
+
+}
 
 function setup() {
     //since this uses pointer, it automatically updates to the newest canvas
@@ -29,7 +48,11 @@ function setup() {
 }
 
 function draw() {
-    background(220);
+    if(serverCanvas){
+        image(serverCanvas, 0, 0);
+    }else{
+        background(220);
+    }
     fill('red');
     if(newCanvas){image(newCanvas, 0, 0);}
     circle(mouseX, mouseY, 50);

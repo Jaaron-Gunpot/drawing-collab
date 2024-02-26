@@ -7,6 +7,7 @@ let currentCanvas = {};
 const updateCanvas = (request, response, body) => {
   // im not sure how to deal with the satus code so i put 204,
   // most of the time its editing the canvas anyway
+  //have to find some way to verify that the data is an updated canvas
   response.writeHead(204, { 'Content-Type': 'application/json' });
   currentCanvas = body.data;
   socket(currentCanvas);
