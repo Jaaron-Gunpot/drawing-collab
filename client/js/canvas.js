@@ -46,13 +46,13 @@ function setup() {
     // );
     // image(newCanvas, 0, 0);
 }
+//a function so i can control when the background is drawn
+const drawBackground = () => {
+    background(220);
+};
 
 function draw() {
-    if(serverCanvas){
-        image(serverCanvas, 0, 0);
-    }else{
-        background(220);
-    }
+    if(serverCanvas){image(serverCanvas, 0, 0);}
     fill('red');
     if(newCanvas){image(newCanvas, 0, 0);}
     circle(mouseX, mouseY, 50);
