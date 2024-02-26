@@ -7,6 +7,25 @@ let canvasHeight = 500;
 function setup() {
     //since this uses pointer, it automatically updates to the newest canvas
     oldCanvas = createCanvas(canvasWidth, canvasHeight);
+    //get the saved canvas from the server on startup
+    //can you make fetch requests a function?
+    //I'm using the same request a lot but i don't know how fetch works in a function
+    // fetch('/newCanvas', {
+    //     method: 'GET',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     }
+    // }).then(
+    //     (response) => {return response.json();}
+    // ).then(
+    //     (data) => {
+    //         console.log(`startup retrieved canvas: ${data}`);
+    //         loadImage(data.imageData, img => {
+    //             newCanvas = img;
+    //         });
+    //     }
+    // );
+    // image(newCanvas, 0, 0);
 }
 
 function draw() {
@@ -56,6 +75,9 @@ function mouseMoved() {
             // Prints an array of objects containing raw image data,
             // filenames, and extensions.
             print(data[0]);
+            //since each client has their own instance of canvas that gets posted to the server,
+            //a new client can reset the canvas when they connect
+            //will probably need to authenticate if the canvas is legit in the server
             fetch('/canvas', {
                 method: 'POST',
                 headers: {
