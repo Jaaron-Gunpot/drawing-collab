@@ -9,8 +9,7 @@
     "test": "echo \"Good job! All tests clear\"",
     "nodemon": "nodemon -e js,html,css --watch ./src --watch ./client ./src/server.js",
     "buildBundle": "webpack",
-    "watchBundle": "webpack watch",
-    "heroku-postbuild": "webpack --mode production"
+    "watchBundle": "webpack watch"
   },
   "author": "Jaaron",
   "license": "ISC",
