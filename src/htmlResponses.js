@@ -18,17 +18,16 @@ const notFound = (request, response) => {
   response.end();
 };
 
-
-//gives the requested js file in one function
+// gives the requested js file in one function
 const getJs = (request, response, js) => {
   response.writeHead(200, { 'Content-Type': 'application/javascript' });
   response.write(js);
   response.end();
 };
 
-//will delete later
-const getSocket = (request, response) =>{getJs(request,response,socket)};
-const getSrc = (request, response) =>{getJs(request,response,src)};
+// will delete later
+const getSocket = (request, response) => { getJs(request, response, socket); };
+const getSrc = (request, response) => { getJs(request, response, src); };
 
 module.exports.getIndex = getIndex;
 module.exports.notFound = notFound;

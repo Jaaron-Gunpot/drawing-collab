@@ -18,6 +18,8 @@ function draw() {
     circle(mouseX, mouseY, 50);
 }
 
+
+//move all this to sockets.js when i figure out how to import and export from the client
 const socket = io();
 socket.on('connect', () => {
     console.log(socket.id);
@@ -32,9 +34,11 @@ socket.on('new-canvas', (e) => {
             'Content-Type': 'application/json'
         }
     }).then(
-        response => response.json()
+        (response) => {return response.json();}
     ).then(
-        data => { }
+        (data) => {
+            console.log(`the new canvas:${data}`);
+        }
     );
 });
 const canvasChanged = () => {
