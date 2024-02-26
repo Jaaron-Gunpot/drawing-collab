@@ -9,6 +9,7 @@ const setupSockets = (server) => {
   // why is there a line character limit?
   // I want to export socket so i can emit events from other files but this is the entry file-fixed
   io.on('connection', (socket) => {
+    socket.join('writing-room');
     console.log(`connected socket:${socket.id}`);
     // should the server do something if the canvas hanges soket related?
     // the client already sends a post request when that happens so probably not
@@ -22,7 +23,7 @@ const setupSockets = (server) => {
 // tells connected sockets that the canvas has changed so they can update accordingly
 // at this point I realized sockets are just an implementation of the observer pattern
 const canvasChanged = (e) => {
-  io.emit('new-canvas', e);
+  io.to('writing-room').emit('new-canvas', e);
 };
 
 module.exports = {

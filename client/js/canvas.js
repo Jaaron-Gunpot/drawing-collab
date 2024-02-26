@@ -7,17 +7,14 @@ let canvasHeight = 500;
 function setup() {
     //since this uses pointer, it automatically updates to the newest canvas
     oldCanvas = createCanvas(canvasWidth, canvasHeight);
-
-    //creates a deep clone of the canvas to compare to
-    newCanvas = Object.assign({}, oldCanvas);
 }
 
 function draw() {
     background(220);
     fill('red');
+    if(newCanvas){image(newCanvas, 0, 0);}
     circle(mouseX, mouseY, 50);
 }
-
 
 //move all this to sockets.js when i figure out how to import and export from the client
 const socket = io();
@@ -28,7 +25,9 @@ socket.on('connect', () => {
 //since everthing is sent as images, that means no deleting and a lot of overhead(don't know how to solve that yet)
 socket.on('new-canvas', (e) => {
     console.log(e);
-    loadImage(e.imageData)
+    loadImage(e.imageData, img => {
+        newCanvas = img;
+    });
     fetch('/newCanvas', {
         method: 'GET',
         headers: {
@@ -38,7 +37,7 @@ socket.on('new-canvas', (e) => {
         (response) => {return response.json();}
     ).then(
         (data) => {
-            console.log(`the new canvas:${data.data}`);
+            console.log(`the new canvas:${data}`);
         }
     );
 });
