@@ -84,3 +84,25 @@ createSocket(server);
 server.listen(port, () => {
   console.log(`Listening on 127.0.0.1: ${port}`);
 });
+
+
+//requirmenets not met yet
+/*
+Server API must use and support the following status codes:
+○ 200
+○ 201
+○ 204
+○ 400
+● Server API must support the following methods:
+○ GET
+○ HEAD (Client does not need to use HEAD, but the server should be able
+to accept HEAD requests to all GET endpoints that send back JSON
+data).
+○ POST
+● At least one GET request must support query parameters. A reminder that you
+should not add data to your API using GET requests (that is the job of POST).
+Instead, your query parameters should be used for things like filtering the results
+of a query, etc.
+● The client must send the accept header. Note that your server only needs to
+support JSON, although you may add support for things like XML.
+*/
