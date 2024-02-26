@@ -8,9 +8,9 @@ const updateCanvas = (request, response, body) => {
   response.writeHead(204, { 'Content-Type': 'application/json' });
   currentCanvas = body.data;
   socket(currentCanvas);
-  response.write({ message: 'updated canvas' });
+  response.write(JSON.stringify({ message: 'updated canvas' }));
   response.end();
-  console.log(body);
+  //console.log(body);
 };
 
 const provideCanvas = (request, response) => {

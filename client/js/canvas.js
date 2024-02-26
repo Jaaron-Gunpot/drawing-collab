@@ -28,6 +28,7 @@ socket.on('connect', () => {
 //since everthing is sent as images, that means no deleting and a lot of overhead(don't know how to solve that yet)
 socket.on('new-canvas', (e) => {
     console.log(e);
+    loadImage(e.imageData)
     fetch('/newCanvas', {
         method: 'GET',
         headers: {
@@ -37,7 +38,7 @@ socket.on('new-canvas', (e) => {
         (response) => {return response.json();}
     ).then(
         (data) => {
-            console.log(`the new canvas:${data}`);
+            console.log(`the new canvas:${data.data}`);
         }
     );
 });
