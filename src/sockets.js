@@ -21,7 +21,7 @@ io.on('connection', (socket) => {
   //tells connected sockets that the canvas has changed so they can update accordingly
   //at this point I realized sockets are just an implementation of the observer pattern
   canvasChanged = (e) => {
-    socket.emit('canvas-changed', e);
+    socket.emit('new-canvas', e);
   };
 });
 

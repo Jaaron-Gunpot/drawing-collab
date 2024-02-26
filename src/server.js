@@ -11,7 +11,8 @@ const urlStruct = {
   GET: {
     '/': htmlResponses.getIndex,
     '/canvas.js': htmlResponses.getSrc,
-    '/sockets.js': htmlResponses.getSocket
+    '/sockets.js': htmlResponses.getSocket,
+    '/newCanvas': canvasResponses.provideCanvas,
   },
   HEAD: {},
   POST: {
