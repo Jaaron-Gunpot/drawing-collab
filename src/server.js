@@ -15,7 +15,7 @@ const urlStruct = {
   },
   HEAD: {},
   POST: {
-    '/canvas': htmlResponses.updateCanvas,
+    '/canvas': canvasResponses.updateCanvas,
   },
   notFound: htmlResponses.notFound,
 };
