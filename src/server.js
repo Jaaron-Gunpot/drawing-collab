@@ -3,6 +3,7 @@ const url = require('url');
 const query = require('querystring');
 const socketio = require('socket.io');
 const htmlResponses = require('./htmlResponses.js');
+const canvasResponses = require('./canvas.js');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
@@ -13,7 +14,9 @@ const urlStruct = {
     '/sockets.js': htmlResponses.getSocket
   },
   HEAD: {},
-  POST: {},
+  POST: {
+    '/canvas': htmlResponses.updateCanvas,
+  },
   notFound: htmlResponses.notFound,
 };
 
@@ -47,7 +50,7 @@ const parseBody = (request, response, handler) => {
   // us data in X-WWW-FORM-URLENCODED format. If it was in JSON we could use JSON.parse.
   request.on('end', () => {
     const bodyString = Buffer.concat(body).toString();
-    const bodyParams = query.parse(bodyString);
+    const bodyParams = JSON.parse(bodyString);
 
     // Once we have the bodyParams object, we will call the handler function. We then
     // proceed much like we would with a GET request.
