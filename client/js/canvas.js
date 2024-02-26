@@ -5,7 +5,7 @@ let newCanvas;
 let canvasWidth = 500;
 let canvasHeight = 500;
 
-const getNewCanvas = (canvasObject) => {
+function preload(){
     fetch('/newCanvas', {
         method: 'GET',
         headers: {
@@ -16,15 +16,11 @@ const getNewCanvas = (canvasObject) => {
     ).then(
         (data) => {
             loadImage(data.imageData, img => {
-                canvasObject = img;
+                serverCanvas = img;
             });
         }
     );
-};
 
-function preload(){
-    //if this is a new client, grab the most recent canvas from the server
-    getNewCanvas(serverCanvas);
 }
 
 function setup() {
@@ -72,7 +68,20 @@ socket.on('connect', () => {
 socket.on('new-canvas', (e) => {
     //i can make the background using just the e since it is the same thing but im making another request just because
     console.log(e);
-    getNewCanvas(newCanvas);
+    fetch('/newCanvas', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(
+        (response) => {return response.json();}
+    ).then(
+        (data) => {
+            loadImage(data.imageData, img => {
+                newCanvas = img;
+            });
+        }
+    );
 });
 //testing web sockets
 const canvasChanged = () => {

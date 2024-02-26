@@ -85,8 +85,7 @@ server.listen(port, () => {
   console.log(`Listening on 127.0.0.1: ${port}`);
 });
 
-
-//requirmenets not met yet
+// requirmenets not met yet
 /*
 Server API must use and support the following status codes:
 ○ 200
