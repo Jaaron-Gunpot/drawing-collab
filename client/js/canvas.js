@@ -5,7 +5,7 @@ let newCanvas;
 let canvasWidth = 500;
 let canvasHeight = 500;
 
-function preload(){
+const getNewCanvas = (canvasObject) => {
     fetch('/newCanvas', {
         method: 'GET',
         headers: {
@@ -16,11 +16,15 @@ function preload(){
     ).then(
         (data) => {
             loadImage(data.imageData, img => {
-                serverCanvas = img;
+                canvasObject = img;
             });
         }
     );
+};
 
+function preload(){
+    //if this is a new client, grab the most recent canvas from the server
+    getNewCanvas(serverCanvas);
 }
 
 function setup() {
@@ -68,20 +72,7 @@ socket.on('connect', () => {
 socket.on('new-canvas', (e) => {
     //i can make the background using just the e since it is the same thing but im making another request just because
     console.log(e);
-    fetch('/newCanvas', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(
-        (response) => {return response.json();}
-    ).then(
-        (data) => {
-            loadImage(data.imageData, img => {
-                newCanvas = img;
-            });
-        }
-    );
+    getNewCanvas(newCanvas);
 });
 //testing web sockets
 const canvasChanged = () => {
@@ -113,3 +104,7 @@ function mouseMoved() {
         });
     }
 }
+
+
+
+//find some way to make the user control when they are drawing instead of drawing the mouse
