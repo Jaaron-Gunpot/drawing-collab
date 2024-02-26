@@ -22,6 +22,11 @@ const socket = io();
 socket.on('connect', () => {
     console.log(socket.id);
 });
+//make a get request when we are told that the canvas has changed so the client can update the canvas
+//since everthing is ent as images, that means no deleting and a lot of overhead(don't know how to solve that yet)
+socket.on('canvas-changed', (e) => {
+    console.log(e);
+});
 const canvasChanged = () => {
     socket.emit('canvas-changed', "canvas changed!");
 };
