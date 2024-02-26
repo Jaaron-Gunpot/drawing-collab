@@ -83,10 +83,6 @@ socket.on('new-canvas', (e) => {
         }
     );
 });
-//testing web sockets
-const canvasChanged = () => {
-    socket.emit('canvas-changed', "canvas changed!");
-};
 //setInterval(canvasChanged, 5000);
 
 
@@ -109,7 +105,9 @@ function mouseMoved() {
                 body: JSON.stringify({
                     data: data[0]
                 })
-            })
+            }).then(
+                ()=>{socket.emit('canvas-changed', "canvas changed!");}
+            );
         });
     }
 }

@@ -3,6 +3,12 @@ const socketio = require('socket.io');
 // put the io boject in the global scope
 let io;
 
+// tells connected sockets that the canvas has changed so they can update accordingly
+// at this point I realized sockets are just an implementation of the observer pattern
+const canvasChanged = (e) => {
+  io.to('writing-room').emit('new-canvas', e);
+};
+
 // setup the io object using a passed in server from server.js
 const setupSockets = (server) => {
   io = socketio(server);
@@ -14,16 +20,10 @@ const setupSockets = (server) => {
     // should the server do something if the canvas hanges soket related?
     // the client already sends a post request when that happens so probably not
     socket.on('canvas-changed', () => {
-      // console.log(e);
+      canvasChanged();
     });
   });
   return io;
-};
-
-// tells connected sockets that the canvas has changed so they can update accordingly
-// at this point I realized sockets are just an implementation of the observer pattern
-const canvasChanged = (e) => {
-  io.to('writing-room').emit('new-canvas', e);
 };
 
 module.exports = {
