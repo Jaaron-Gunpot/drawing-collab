@@ -4,6 +4,7 @@ let oldCanvas;
 let newCanvas;
 let canvasWidth = 500;
 let canvasHeight = 500;
+let drawing = false;
 
 function preload(){
     fetch('/newCanvas', {
@@ -52,10 +53,12 @@ const drawBackground = () => {
 };
 
 function draw() {
-    if(serverCanvas){image(serverCanvas, 0, 0);}
+    if(serverCanvas){image(serverCanvas, 0, 0);}else{drawBackground();}
     fill('red');
     if(newCanvas){image(newCanvas, 0, 0);}
-    circle(mouseX, mouseY, 50);
+    if(drawing){
+        circle(mouseX, mouseY, 20);
+    }
 }
 
 //move all this to sockets.js when i figure out how to import and export from the client
@@ -67,10 +70,11 @@ socket.on('connect', () => {
 //since everthing is sent as images, that means no deleting and a lot of overhead(don't know how to solve that yet)
 socket.on('new-canvas', (e) => {
     //i can make the background using just the e since it is the same thing but im making another request just because
-    console.log(e);
+    //console.log(e);
     fetch('/newCanvas', {
         method: 'GET',
         headers: {
+            'Accept': 'application/json',
             'Content-Type': 'application/json'
         }
     }).then(
@@ -96,7 +100,7 @@ function mouseMoved() {
             print(data[0]);
             //since each client has their own instance of canvas that gets posted to the server,
             //a new client can reset the canvas when they connect
-            //will probably need to authenticate if the canvas is legit in the server
+            //will probably need to authenticate if the canvas is legit in the server-fixed
             fetch('/canvas', {
                 method: 'POST',
                 headers: {
@@ -105,10 +109,16 @@ function mouseMoved() {
                 body: JSON.stringify({
                     data: data[0]
                 })
-            }).then(
-                ()=>{socket.emit('canvas-changed', "canvas changed!");}
-            );
+            })
         });
+    }
+}
+//change the state of the drawing boolean so the user can control when to draw
+function mouseClicked(){
+    if(drawing){
+        drawing=false;
+    }else{
+        drawing=true;
     }
 }
 

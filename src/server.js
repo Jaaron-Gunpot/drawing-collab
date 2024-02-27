@@ -89,8 +89,6 @@ server.listen(port, () => {
 /*
 Server API must use and support the following status codes:
 ○ 200
-○ 201
-○ 204
 ○ 400
 ● Server API must support the following methods:
 ○ GET
@@ -102,10 +100,12 @@ data).
 should not add data to your API using GET requests (that is the job of POST).
 Instead, your query parameters should be used for things like filtering the results
 of a query, etc.
-● The client must send the accept header. Note that your server only needs to
-support JSON, although you may add support for things like XML.
-Add the ability to choose color and size of the brush.
-Add the ability to erase.
-implement css and bulma(maybe)
-use local storage to save the client color and brush size
+  make the index some kind of form where you search for a specific room, may make the sockets mkore complicated
+  could make query parameters possible for project
+
+  //extras
+  Add the ability to choose color and size of the brush.
+  Add the ability to erase.
+  implement css and bulma(maybe)
+  use local storage to save the client color and brush size
 */
