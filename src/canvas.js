@@ -8,11 +8,11 @@ const updateCanvas = (request, response, body) => {
   // im not sure how to deal with the satus code so i put 204-fixed
   // most of the time its editing the canvas anyway
   // have to find some way to verify that the data is an updated canvas-fixed
-  //from https://medium.com/@onlinemsr/javascript-object-empty-9f811ce54587#:~:text=3.-,Using%20Object.,a%20given%20object's%20property%20values.
-  //if the canvas has not been touched yet, give 201, else give 204
-  if(Object.keys(emptyObject).length === 0){
+  // from https://medium.com/@onlinemsr/javascript-object-empty-9f811ce54587#:~:text=3.-,Using%20Object.,a%20given%20object's%20property%20values.
+  // if the canvas has not been touched yet, give 201, else give 204
+  if (Object.keys(currentCanvas).length === 0) {
     response.writeHead(201, { 'Content-Type': 'application/json' });
-  }else{
+  } else {
     response.writeHead(204, { 'Content-Type': 'application/json' });
   }
   currentCanvas = body.data;

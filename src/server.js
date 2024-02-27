@@ -100,7 +100,8 @@ data).
 should not add data to your API using GET requests (that is the job of POST).
 Instead, your query parameters should be used for things like filtering the results
 of a query, etc.
-  make the index some kind of form where you search for a specific room, may make the sockets mkore complicated
+  make the index some kind of form where you search for a specific room
+  may make the sockets mkore complicated
   could make query parameters possible for project
 
   //extras
