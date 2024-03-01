@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        window.onload = () => {
+            const room = document.getElementById('room');
+            const form = document.querySelector('form');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                console.log(room.value);
+                return false;
+            });
+        };
+    </script>
+</head>
+
+<body>
+    <form action="/" method="post">
+        <input type="text" id="room" placeholder="Room">
+        <button type="submit">Join</button>
+    </form>
+</body>
+
+</html>

@@ -109,4 +109,9 @@ of a query, etc.
   Add the ability to erase.
   implement css and bulma(maybe)
   use local storage to save the client color and brush size
+
+  has some other page where you enter an id
+  its a form with a post request
+  if the room exists on the server, it sends you to the room
+  if the room does not exist, it sends you to a new room with that name
 */

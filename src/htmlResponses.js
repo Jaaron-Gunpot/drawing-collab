@@ -1,6 +1,7 @@
 const fs = require('fs');
 
-const index = fs.readFileSync(`${__dirname}/../client/html/client.html`);
+const index = fs.readFileSync(`${__dirname}/../client/html/room.html`);
+const client = fs.readFileSync(`${__dirname}/../client/html/client.html`);
 const error = fs.readFileSync(`${__dirname}/../client/html/404.html`);
 // will use webpack if it turns into multiple files
 const src = fs.readFileSync(`${__dirname}/../client/js/canvas.js`);
