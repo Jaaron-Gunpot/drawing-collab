@@ -9,11 +9,11 @@ const canvasChanged = (e) => {
   io.to('writing-room').emit('new-canvas', e);
 };
 
-//I got this from a demo but I am not sure I need it yet
+// I got this from a demo but I am not sure I need it yet
 const handleRoomChange = (socket, roomName) => {
-  socket.rooms.forEach(room => {
-      if(room == socket.id) return; 
-      socket.leave(room);
+  socket.rooms.forEach((room) => {
+    if (room === socket.id) return;
+    socket.leave(room);
   });
   socket.join(roomName);
 };
@@ -36,8 +36,6 @@ const setupSockets = (server) => {
   });
   return io;
 };
-
-
 
 module.exports = {
   setupSockets,

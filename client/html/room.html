@@ -21,8 +21,17 @@
                             localStorage.setItem('room', room.value);
                         } else {
                             //the room does not exist, ask if they want to create a new one
-                            if (confirm('Room does not exist, would you like to create it?')) {
-                                fetch(`/createRoom`, { method: 'POST' })
+                            //based on 'https://developer.mozilla.org/en-US/docs/Web/API/Window/confirm' example
+                            if (window.confirm('Room does not exist, would you like to create it?')) {
+                                fetch(`/createRoom`,
+                                    {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify({ room: room.value }),
+                                    }
+                                )
                                     .then((response) => {
                                         if (response.status === 200) {
                                             //we are good, send them to the room
