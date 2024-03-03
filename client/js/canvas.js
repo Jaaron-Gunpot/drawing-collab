@@ -10,7 +10,8 @@ const roomName = localStorage.getItem('room');
 function preload(){
     //send them back to the room page if they are not in a room
     if(roomName === null){window.location.href='/';}
-    fetch('/newCanvas', {
+    //get the canvas from the serverwhen we start
+    fetch(`/newCanvas?room=${roomName}`, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -20,6 +21,8 @@ function preload(){
         (response) => {return response.json();}
     ).then(
         (data) => {
+            //if there was no canvas don't get the load an image of the canvas
+            if(data.message === 'no canvas'){return;}
             loadImage(data.imageData, img => {
                 serverCanvas = img;
             });

@@ -12,6 +12,7 @@
             const form = document.querySelector('form');
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
+                console.log('room', room.value);
                 fetch(`/room?room=${room.value}`, {
                     method: 'GET',
                     headers: {
@@ -34,7 +35,7 @@
                                         headers: {
                                             'Content-Type': 'application/json'
                                         },
-                                        body: JSON.stringify({ room: room.value }),
+                                        body: JSON.stringify({ roomName: room.value }),
                                     }
                                 )
                                     .then((response) => {

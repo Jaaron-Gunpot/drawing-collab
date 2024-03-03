@@ -5,9 +5,9 @@ const currentCanvas = {};
 /*
   {
     roomName:{
-      canvas: {
-        data:
-      }
+        data:{
+
+        }
     }
   }
 */
@@ -27,7 +27,9 @@ const updateCanvas = (request, response, body) => {
   }
   // since javascript lets you make up object keys, this should work, but probably not good practice
   currentCanvas[body.roomName] = body.data;
+  //console.log(body.roomName);
   socket(currentCanvas[body.roomName], body.roomName);
+  //console.log(`updateCanvas:${JSON.stringify(body)}`);
   response.write(JSON.stringify({ message: 'updated canvas' }));
   response.end();
   // console.log(body);
@@ -35,8 +37,13 @@ const updateCanvas = (request, response, body) => {
 
 const provideCanvas = (request, response, params) => {
   response.writeHead(200, { 'Content-Type': 'application/json' });
+  //check if the canvas exists or not
+  if (Object.keys(currentCanvas).length === 0){
+    response.write(JSON.stringify({ message: 'no canvas' }));
+    return response.end();
+  }
   response.write(JSON.stringify(currentCanvas[params.room]));
-  response.end();
+  return response.end();
 };
 
 const provideCanvasMeta = (request, response) => {

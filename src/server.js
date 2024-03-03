@@ -38,7 +38,7 @@ const parseBody = (request, response, handler) => {
   // is for if there is an error. If there is, write it to the console and send
   // back a 400-Bad Request error to the client.
   request.on('error', (err) => {
-    console.dir(err);
+    //console.dir(err);
     response.statusCode = 400;
     response.end();
   });
@@ -68,7 +68,7 @@ const parseBody = (request, response, handler) => {
 
 const onRequest = (request, response) => {
   const parsedUrl = url.parse(request.url);
-  // console.log(request.url);
+  console.log(request.url);
   const params = query.parse(parsedUrl.query);
 
   // handle post re4quests generally
