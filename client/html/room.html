@@ -12,7 +12,12 @@
             const form = document.querySelector('form');
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
-                fetch(`/room?room=${room.value}`)
+                fetch(`/room?room=${room.value}`, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                    }
+                })
                     .then((response) => {
                         if (response.status === 200) {
                             //we are good, send them to the room

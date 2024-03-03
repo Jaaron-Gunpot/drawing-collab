@@ -27,7 +27,6 @@ const createRoom = (request, response, body) => {
 //confirms to client if the rquested room exists
 const roomRequest = (request, response, params) => {
   const foundRoom = rooms.find((room) => room === params.room);
-  console.log(foundRoom);
   // if the room doesn't exist, give them an error message
   if (!foundRoom) {
     response.writeHead(400, { 'Content-Type': 'application/json' });
