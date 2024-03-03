@@ -65,7 +65,7 @@ const parseBody = (request, response, handler) => {
 
 const onRequest = (request, response) => {
   const parsedUrl = url.parse(request.url);
-  console.log(request.url);
+  //console.log(request.url);
   const params = query.parse(parsedUrl.query);
 
   // handle post re4quests generally

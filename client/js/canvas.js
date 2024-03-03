@@ -5,8 +5,11 @@ let newCanvas;
 let canvasWidth = 500;
 let canvasHeight = 500;
 let drawing = false;
+const roomName = localStorage.getItem('room');
 
 function preload(){
+    //send them back to the room page if they are not in a room
+    if(roomName === null){window.location.href='/';}
     fetch('/newCanvas', {
         method: 'GET',
         headers: {
@@ -27,25 +30,6 @@ function preload(){
 function setup() {
     //since this uses pointer, it automatically updates to the newest canvas
     oldCanvas = createCanvas(canvasWidth, canvasHeight);
-    //get the saved canvas from the server on startup
-    //can you make fetch requests a function?
-    //I'm using the same request a lot but i don't know how fetch works in a function
-    // fetch('/newCanvas', {
-    //     method: 'GET',
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     }
-    // }).then(
-    //     (response) => {return response.json();}
-    // ).then(
-    //     (data) => {
-    //         console.log(`startup retrieved canvas: ${data}`);
-    //         loadImage(data.imageData, img => {
-    //             newCanvas = img;
-    //         });
-    //     }
-    // );
-    // image(newCanvas, 0, 0);
 }
 //a function so i can control when the background is drawn
 const drawBackground = () => {
@@ -64,6 +48,7 @@ function draw() {
 //move all this to sockets.js when i figure out how to import and export from the client
 const socket = io();
 socket.on('connect', () => {
+    socket.emit('room change', );
     console.log(socket.id);
 });
 //make a get request when we are told that the canvas has changed so the client can update the canvas
@@ -71,7 +56,7 @@ socket.on('connect', () => {
 socket.on('new-canvas', (e) => {
     //i can make the background using just the e since it is the same thing but im making another request just because
     //console.log(e);
-    fetch('/newCanvas', {
+    fetch(`/newCanvas?${roomName}`, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
