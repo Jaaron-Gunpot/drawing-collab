@@ -3,6 +3,9 @@ const socketio = require('socket.io');
 // put the io boject in the global scope
 let io;
 
+//
+let rooms = [];
+
 // tells connected sockets that the canvas has changed so they can update accordingly
 // at this point I realized sockets are just an implementation of the observer pattern
 const canvasChanged = (e) => {
