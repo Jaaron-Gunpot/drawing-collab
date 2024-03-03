@@ -8,8 +8,8 @@ const rooms = [];
 
 // tells connected sockets that the canvas has changed so they can update accordingly
 // at this point I realized sockets are just an implementation of the observer pattern
-const canvasChanged = (e) => {
-  io.to('writing-room').emit('new-canvas', e);
+const canvasChanged = (canvas,room) => {
+  io.to(room).emit('new-canvas', canvas);
 };
 
 // I got this from a demo but I am not sure I need it yet

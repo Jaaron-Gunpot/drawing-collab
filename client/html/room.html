@@ -38,7 +38,8 @@
                                     }
                                 )
                                     .then((response) => {
-                                        if (response.status === 200) {
+                                        //if the room was created, send them to the room
+                                        if (response.status === 201) {
                                             //we are good, send them to the room
                                             window.location.href = `/canvas`;
                                             //save the room name so the next page knows what name to use

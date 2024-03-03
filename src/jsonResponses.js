@@ -4,6 +4,7 @@ const { rooms } = require('./sockets.js');
 // If there is no room, create one
 const createRoom = (request, response, body) => {
   const roomName = body.room;
+  console.log(roomName);
   // if they did'nt give a room name
   if (roomName === undefined) {
     response.writeHead(400, { 'Content-Type': 'application/json' });

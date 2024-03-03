@@ -27,15 +27,15 @@ const updateCanvas = (request, response, body) => {
   }
   // since javascript lets you make up object keys, this should work, but probably not good practice
   currentCanvas[body.roomName] = body.data;
-  socket(currentCanvas[body.roomName]);
+  socket(currentCanvas[body.roomName], body.roomName);
   response.write(JSON.stringify({ message: 'updated canvas' }));
   response.end();
   // console.log(body);
 };
 
-const provideCanvas = (request, response) => {
+const provideCanvas = (request, response, params) => {
   response.writeHead(200, { 'Content-Type': 'application/json' });
-  response.write(JSON.stringify(currentCanvas));
+  response.write(JSON.stringify(currentCanvas[params.room]));
   response.end();
 };
 
