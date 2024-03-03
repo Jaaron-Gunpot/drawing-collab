@@ -1,6 +1,16 @@
 const socket = require('./sockets.js').canvasChanged;
 // empry object to hold the most current canvas object
-let currentCanvas = {};
+const currentCanvas = {};
+
+/*
+  {
+    roomName:{
+      canvas: {
+        data:
+      }
+    }
+  }
+*/
 
 // function to update and emit the current canvas object
 // I don't know how to parse the image data into something usable
@@ -15,8 +25,9 @@ const updateCanvas = (request, response, body) => {
   } else {
     response.writeHead(204, { 'Content-Type': 'application/json' });
   }
-  currentCanvas = body.data;
-  socket(currentCanvas);
+  // since javascript lets you make up object keys, this should work, but probably not good practice
+  currentCanvas[body.roomName] = body.data;
+  socket(currentCanvas[body.roomName]);
   response.write(JSON.stringify({ message: 'updated canvas' }));
   response.end();
   // console.log(body);

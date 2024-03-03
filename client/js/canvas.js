@@ -93,6 +93,7 @@ function mouseMoved() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
+                    roomName: roomName,
                     data: data[0]
                 })
             })
