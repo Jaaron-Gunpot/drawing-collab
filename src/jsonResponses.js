@@ -4,8 +4,8 @@ const { rooms } = require('./sockets.js');
 // If there is no room, create one
 const createRoom = (request, response, body) => {
   console.log(body);
-  const roomName = body.roomName;
-  //console.log(roomName);
+  const { roomName } = body;
+  // console.log(roomName);
   // if they did'nt give a room name
   if (roomName === undefined) {
     response.writeHead(400, { 'Content-Type': 'application/json' });
@@ -30,7 +30,7 @@ const createRoom = (request, response, body) => {
 const roomRequest = (request, response, params) => {
   console.log(params);
   const foundRoom = rooms.find((room) => room === params.room);
-  //console.log(foundRoom);
+  // console.log(foundRoom);
   // if the room doesn't exist, give them an error message
   if (!foundRoom) {
     response.writeHead(400, { 'Content-Type': 'application/json' });

@@ -29,7 +29,7 @@ const setupSockets = (server) => {
   io.on('connection', (socket) => {
     socket.join('writing-room');
 
-    //console.log(`connected socket:${socket.id}`);
+    // console.log(`connected socket:${socket.id}`);
     // should the server do something if the canvas hanges soket related?
     // the client already sends a post request when that happens so probably not
     socket.on('canvas-changed', () => {
