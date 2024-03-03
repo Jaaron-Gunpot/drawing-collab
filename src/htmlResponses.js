@@ -24,11 +24,12 @@ const getHTML = (request, response, html) => {
 // will delete later
 const getSocket = (request, response) => { getJs(request, response, socket); };
 const getSrc = (request, response) => { getJs(request, response, src); };
-const getIndex = (request, response) => { getHTML(request, response, index);};
-const getCanvas = (request, response) => { getHTML(request, response, client);};
-const notFound = (request, response) => { getHTML(request, response, error);};
+const getIndex = (request, response) => { getHTML(request, response, index); };
+const getCanvas = (request, response) => { getHTML(request, response, canvas); };
+const notFound = (request, response) => { getHTML(request, response, error); };
 
 module.exports.getIndex = getIndex;
 module.exports.notFound = notFound;
 module.exports.getSrc = getSrc;
 module.exports.getSocket = getSocket;
+module.exports.getCanvas = getCanvas;

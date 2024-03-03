@@ -3,6 +3,7 @@ const url = require('url');
 const query = require('querystring');
 const htmlResponses = require('./htmlResponses.js');
 const canvasResponses = require('./canvas.js');
+const jsonResponses = require('./jsonResponses.js');
 const createSocket = require('./sockets.js').setupSockets;
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
@@ -13,10 +14,12 @@ const urlStruct = {
     '/canvas.js': htmlResponses.getSrc,
     '/sockets.js': htmlResponses.getSocket,
     '/newCanvas': canvasResponses.provideCanvas,
+    '/roomRequest': jsonResponses.roomRequest, // create
   },
   HEAD: {},
   POST: {
     '/canvas': canvasResponses.updateCanvas,
+    '/createRoom': jsonResponses.createRoom, // create
   },
   notFound: htmlResponses.notFound,
 };
@@ -88,7 +91,6 @@ server.listen(port, () => {
 // requirmenets not met yet
 /*
 Server API must use and support the following status codes:
-○ 200
 ○ 400
 ● Server API must support the following methods:
 ○ GET
@@ -109,9 +111,4 @@ of a query, etc.
   Add the ability to erase.
   implement css and bulma(maybe)
   use local storage to save the client color and brush size
-
-  has some other page where you enter an id
-  its a form with a post request
-  if the room exists on the server, it sends you to the room
-  if the room does not exist, it sends you to a new room with that name
 */

@@ -4,7 +4,7 @@ const socketio = require('socket.io');
 let io;
 
 //
-let rooms = [];
+const rooms = [];
 
 // tells connected sockets that the canvas has changed so they can update accordingly
 // at this point I realized sockets are just an implementation of the observer pattern
@@ -43,4 +43,5 @@ const setupSockets = (server) => {
 module.exports = {
   setupSockets,
   canvasChanged,
+  rooms,
 };
