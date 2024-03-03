@@ -28,7 +28,13 @@ const provideCanvas = (request, response) => {
   response.end();
 };
 
+const provideCanvasMeta = (request, response) => {
+  response.writeHead(200, { 'Content-Type': 'application/json' });
+  response.end();
+};
+
 module.exports = {
   updateCanvas,
   provideCanvas,
+  provideCanvasMeta,
 };

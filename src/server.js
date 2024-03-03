@@ -15,12 +15,15 @@ const urlStruct = {
     '/sockets.js': htmlResponses.getSocket,
     '/canvas': htmlResponses.getCanvas,
     '/newCanvas': canvasResponses.provideCanvas,
-    '/roomRequest': jsonResponses.roomRequest, // create
+    '/roomRequest': jsonResponses.roomRequest,
   },
-  HEAD: {},
+  HEAD: {
+    '/newCanvas': canvasResponses.provideCanvasMeta,
+    '/roomRequest': jsonResponses.roomRequestMeta,
+  },
   POST: {
     '/canvas': canvasResponses.updateCanvas,
-    '/createRoom': jsonResponses.createRoom, // create
+    '/createRoom': jsonResponses.createRoom,
   },
   notFound: htmlResponses.notFound,
 };
@@ -65,7 +68,7 @@ const parseBody = (request, response, handler) => {
 
 const onRequest = (request, response) => {
   const parsedUrl = url.parse(request.url);
-  //console.log(request.url);
+  // console.log(request.url);
   const params = query.parse(parsedUrl.query);
 
   // handle post re4quests generally
@@ -91,18 +94,6 @@ server.listen(port, () => {
 
 // requirmenets not met yet
 /*
-Server API must use and support the following status codes:
-○ 400
-● Server API must support the following methods:
-○ GET
-○ HEAD (Client does not need to use HEAD, but the server should be able
-to accept HEAD requests to all GET endpoints that send back JSON
-data).
-○ POST
-● At least one GET request must support query parameters. A reminder that you
-should not add data to your API using GET requests (that is the job of POST).
-Instead, your query parameters should be used for things like filtering the results
-of a query, etc.
   make the index some kind of form where you search for a specific room
   may make the sockets mkore complicated
   could make query parameters possible for project
