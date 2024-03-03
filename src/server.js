@@ -15,7 +15,7 @@ const urlStruct = {
     '/sockets.js': htmlResponses.getSocket,
     '/canvas': htmlResponses.getCanvas,
     '/newCanvas': canvasResponses.provideCanvas,
-    '/roomRequest': jsonResponses.roomRequest,
+    '/room': jsonResponses.roomRequest,
   },
   HEAD: {
     '/newCanvas': canvasResponses.provideCanvasMeta,
