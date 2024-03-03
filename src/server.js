@@ -13,6 +13,7 @@ const urlStruct = {
     '/': htmlResponses.getIndex,
     '/canvas.js': htmlResponses.getSrc,
     '/sockets.js': htmlResponses.getSocket,
+    '/canvas': htmlResponses.getCanvas,
     '/newCanvas': canvasResponses.provideCanvas,
     '/roomRequest': jsonResponses.roomRequest, // create
   },

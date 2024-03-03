@@ -23,4 +23,19 @@ const createRoom = (request, response, body) => {
     }
 };
 
+const roomRequest = (request, response, params) => {
+    const foundRoom = rooms.find(room => {(room === params.data.room)});
+    //if the room doesn't exist, give them an error message
+    if(foundRoom){
+        response.writeHead(400, { 'Content-Type': 'application/json' });
+        response.write(JSON.stringify({ message: 'room not found' }));
+        response.end();
+    }else{
+        response.writeHead(200, { 'Content-Type': 'application/json' });
+        response.write(JSON.stringify({ message: 'room found' }));
+        response.end();
+    }
+};
+
 module.exports.createRoom = createRoom;
+module.exports.roomRequest = roomRequest;

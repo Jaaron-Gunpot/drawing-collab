@@ -12,11 +12,11 @@
             const form = document.querySelector('form');
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
-                fetch(`room?room=${room.value}`)
+                fetch(`/room?room=${room.value}`)
                     .then((response) => {
                         if (response.status === 200) {
                             //we are good, send them to the room
-                            window.location.href = `/`;//URL TO BE DETERMINED
+                            window.location.href = `/canvas`;
                             //save the room name so the next page knows what name to use
                             localStorage.setItem('room', room.value);
                         } else {
@@ -35,7 +35,7 @@
                                     .then((response) => {
                                         if (response.status === 200) {
                                             //we are good, send them to the room
-                                            window.location.href = `/`;//URL TO BE DETERMINED
+                                            window.location.href = `/canvas`;//URL TO BE DETERMINED
                                             //save the room name so the next page knows what name to use
                                             localStorage.setItem('room', room.value);
                                         }
