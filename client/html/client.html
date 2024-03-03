@@ -8,19 +8,40 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.js"></script>
     <script src="/canvas.js"></script>
+    <style>
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        #info-content{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 20vh;
+        }
+    </style>
+    <script>
+        window.onload = () => {
+            //I miss react
+            const template = `
+            <h1>${localStorage.getItem('room')}</h1>
+            `;
+            document.getElementById('info-content').innerHTML=template;
+        }
+    </script>
 </head>
 
 <body>
-    <div>
-        <h1>Discover a world of distractions</h1>
-        <h2>Enter a life of distractions below</h2>
-        <div>
-            <form action="/newDistraction'" method="post">
-                <input type="text" name="distraction" id="distraction" placeholder="Enter a distraction">
-                <button type="submit">Submit</button>
-            </form>
+    <header>
+        <div id="info-section">
+
         </div>
-    </div>
+    </header>
+    <!-- I miss react -->
 </body>
 
 </html>
