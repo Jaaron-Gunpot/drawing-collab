@@ -13,6 +13,33 @@
             justify-content: center;
             height: 100vh;
         }
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+        }
+        h1 {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-size: 3rem;
+        }
+        input {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            width: 20rem;
+            border: 1px solid black;
+        }
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
     </style>
     <script src="/socket.io/socket.io.js"></script>
     <script>
@@ -66,11 +93,15 @@
 </head>
 
 <body>
+    <img src="/background.png">
     <form action="/" method="post">
         <h1>Enter the room you want to join</h1>
         <input type="text" id="room" placeholder="Room">
         <button type="submit">Join</button>
     </form>
+    <footer>
+        <p>Background from <a href="https://pngtree.com/freebackground/cartoon-children-draw-colorful-background_2379347.html?sol=downref&id=bef" target="_blank">pngtree.com</a></p>
+    </footer>
 </body>
 
 </html>
