@@ -8,15 +8,14 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.js"></script>
     <script src="/canvas.js"></script>
-    <script src="/socket.js"></script>
     <link rel="stylesheet" href="/style.css">
     <script>
         window.onload = () => {
             //I miss react
             const template = `
-            <h1>${localStorage.getItem('room')}</h1>
+            <h1>You are currently in :${localStorage.getItem('room')}</h1>
             `;
-            document.getElementById('info-content').innerHTML=template;
+            document.getElementById('info-section').innerHTML=template;
         }
     </script>
 </head>

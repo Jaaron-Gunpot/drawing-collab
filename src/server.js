@@ -12,7 +12,6 @@ const urlStruct = {
   GET: {
     '/': htmlResponses.getIndex,
     '/canvas.js': htmlResponses.getSrc,
-    '/sockets.js': htmlResponses.getSocket,
     '/style.css': htmlResponses.getStyle,
     '/background.png': htmlResponses.getRoomBackground,
     '/canvas': htmlResponses.getCanvas,
