@@ -5,6 +5,7 @@ const canvas = fs.readFileSync(`${__dirname}/../client/html/client.html`);
 const error = fs.readFileSync(`${__dirname}/../client/html/404.html`);
 // will use webpack if it turns into multiple files
 const src = fs.readFileSync(`${__dirname}/../client/js/canvas.js`);
+const roomsrc = fs.readFileSync(`${__dirname}/../client/js/room.js`);
 
 const roomBackground = fs.readFileSync(`${__dirname}/../client/media/room-background.png`);
 
@@ -38,6 +39,7 @@ const getCSS = (request, response, css) => {
 
 // will delete later
 const getSrc = (request, response) => { getJs(request, response, src); };
+const getRoomSrc = (request, response) => { getJs(request, response, roomsrc); };
 const getIndex = (request, response) => { getHTML(request, response, index); };
 const getCanvas = (request, response) => { getHTML(request, response, canvas); };
 const notFound = (request, response) => { getHTML(request, response, error); };
@@ -51,4 +53,5 @@ module.exports = {
   getCanvas,
   getRoomBackground,
   getStyle,
+  getRoomSrc,
 };
