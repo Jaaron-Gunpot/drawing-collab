@@ -54,6 +54,7 @@ function draw() {
     }
 }
 //move all this to sockets.js when i figure out how to import and export from the client
+//couldn't figure out how to import and export from the client so i just put it here
 const socket = io();
 socket.on('connect', () => {
     socket.emit('room change', roomName);

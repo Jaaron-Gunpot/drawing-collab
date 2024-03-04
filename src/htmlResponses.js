@@ -28,7 +28,7 @@ const getImage = (request, response, img) => {
   response.writeHead(200, { 'Content-Type': 'image/png' });
   response.write(img);
   response.end();
-}
+};
 
 const getCSS = (request, response, css) => {
   response.writeHead(200, { 'Content-Type': 'text/css' });
@@ -51,4 +51,4 @@ module.exports = {
   getCanvas,
   getRoomBackground,
   getStyle,
-}
+};
