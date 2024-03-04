@@ -24,6 +24,7 @@ window.onload = () => {
                             {
                                 method: 'POST',
                                 headers: {
+                                    'Accept': 'application/json',
                                     'Content-Type': 'application/json'
                                 },
                                 body: JSON.stringify({ roomName: room.value }),
