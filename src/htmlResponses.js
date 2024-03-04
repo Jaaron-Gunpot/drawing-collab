@@ -9,6 +9,8 @@ const socket = fs.readFileSync(`${__dirname}/../client/js/sockets.js`);
 
 const roomBackground = fs.readFileSync(`${__dirname}/../client/media/room-background.png`);
 
+const style = fs.readFileSync(`${__dirname}/../client/css/style.css`);
+
 // gives the requested js file in one function
 const getJs = (request, response, js) => {
   response.writeHead(200, { 'Content-Type': 'application/javascript' });
@@ -29,6 +31,12 @@ const getImage = (request, response, img) => {
   response.end();
 }
 
+const getCSS = (request, response, css) => {
+  response.writeHead(200, { 'Content-Type': 'text/css' });
+  response.write(css);
+  response.end();
+};
+
 // will delete later
 const getSocket = (request, response) => { getJs(request, response, socket); };
 const getSrc = (request, response) => { getJs(request, response, src); };
@@ -36,12 +44,8 @@ const getIndex = (request, response) => { getHTML(request, response, index); };
 const getCanvas = (request, response) => { getHTML(request, response, canvas); };
 const notFound = (request, response) => { getHTML(request, response, error); };
 const getRoomBackground = (request, response) => { getImage(request, response, roomBackground); };
+const getStyle = (request, response) => { getCSS(request, response, style); };
 
-module.exports.getIndex = getIndex;
-module.exports.notFound = notFound;
-module.exports.getSrc = getSrc;
-module.exports.getSocket = getSocket;
-module.exports.getCanvas = getCanvas;
 module.exports = {
   getIndex,
   notFound,
@@ -49,4 +53,5 @@ module.exports = {
   getSocket,
   getCanvas,
   getRoomBackground,
+  getStyle,
 }
