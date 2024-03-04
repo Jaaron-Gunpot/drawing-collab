@@ -20,7 +20,7 @@ const urlStruct = {
   },
   HEAD: {
     '/newCanvas': canvasResponses.provideCanvasMeta,
-    '/roomRequest': jsonResponses.roomRequestMeta,
+    '/room': jsonResponses.roomRequestMeta,
   },
   POST: {
     '/canvas': canvasResponses.updateCanvas,
