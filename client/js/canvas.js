@@ -6,8 +6,13 @@ let canvasWidth = 500;
 let canvasHeight = 500;
 let drawing = false;
 const roomName = localStorage.getItem('room');
+let color;
 
 function preload(){
+    color = document.getElementById('colorpicker').value;
+    document.getElementById('colorpicker').addEventListener('input', (e) => {
+        color = e.target.value;
+    });
     //send them back to the room page if they are not in a room
     if(roomName === null){window.location.href='/';}
     //get the canvas from the serverwhen we start
@@ -42,7 +47,7 @@ const drawBackground = () => {
 
 function draw() {
     if(serverCanvas){image(serverCanvas, 0, 0);}else{drawBackground();}
-    fill('red');
+    fill(color);
     if(newCanvas){image(newCanvas, 0, 0);}
     if(drawing){
         circle(mouseX, mouseY, 20);
