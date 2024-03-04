@@ -35,6 +35,7 @@ const updateCanvas = (request, response, body) => {
   // console.log(body);
 };
 
+// function to provide the current canvas for the room
 const provideCanvas = (request, response, params) => {
   response.writeHead(200, { 'Content-Type': 'application/json' });
   // check if the canvas exists or not
